@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMCYCLE — Élever la Mobilité Au-delà du Futur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@100;200;300;400;500;600;700;800;900&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --obsidian: #0a0a0a;
+            --obsidian-light: #1a1a1a;
+            --obsidian-medium: #141414;
+            --liquid-silver: #c0c0c0;
+            --platinum: #f5f5f5;
+            --neon-cyan: #00ffff;
+            --neon-cyan-transparent: rgba(0, 255, 255, 0.3);
+            --ultraviolet: #8a2be2;
+            --ultraviolet-transparent: rgba(138, 43, 226, 0.3);
+            --neon-green: #00ff41;
+            --neon-green-transparent: rgba(0, 255, 65, 0.3);
+            --gradient-neon: linear-gradient(135deg, var(--neon-cyan), var(--ultraviolet));
+            --gradient-green-neon: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+            --text-primary: var(--platinum);
+            --text-secondary: var(--liquid-silver);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--obsidian);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--obsidian-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-neon);
+            border-radius: 4px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        nav.scrolled {
+            background-color: rgba(10, 10, 10, 0.8);
+            padding: 15px 50px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gradient-neon);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section - Optimized */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.85)), 
+                        url('https://z-cdn-media.chatglm.cn/files/fd41b3df-2313-4835-9eea-b7c1f16eb291.png?auth_key=1866002608-a3126c3c0e0b49bd8a817205f3f4f5de-0-438105998f597d70844db479c69c183b');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: contrast(1.1) saturate(1.2) brightness(0.9);
+            z-index: -2;
+            animation: heroPulse 8s ease-in-out infinite;
+            /* Optimisation CSS */
+            will-change: filter, transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* Image placeholder for faster loading */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            z-index: -1;
+            opacity: 0;
+            animation: fadeOut 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
+
+        @keyframes heroPulse {
+            0%, 100% {
+                filter: contrast(1.1) saturate(1.2) brightness(0.9);
+                transform: scale(1);
+            }
+            50% {
+                filter: contrast(1.2) saturate(1.3) brightness(1);
+                transform: scale(1.02);
+            }
+        }
+
+        .hero-neon-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 255, 65, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+            animation: neonPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1000px;
+            padding: 0 20px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 100;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease forwards, titleGlow 3s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(0, 255, 65, 0.8), 0 0 40px rgba(0, 255, 255, 0.5);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            opacity: 0;
+            animation: fadeInUp 1.5s ease 0.3s forwards;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease 0.6s forwards;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+        }
+
+        .hero-cta:hover {
+            color: var(--obsidian);
+            background-color: var(--neon-green);
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        /* Holographic Effect */
+        .holographic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(0, 255, 65, 0.03) 0%, 
+                rgba(0, 255, 255, 0.03) 50%, 
+                rgba(0, 255, 65, 0.03) 100%);
+            pointer-events: none;
+            z-index: 0;
+            animation: holographicShift 10s ease infinite;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: var(--gradient-neon);
+        }
+
+        /* Catalogue Section */
+        .catalogue {
+            background-color: var(--obsidian-light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--obsidian);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(10, 10, 10, 0.7) 0%, rgba(10, 10, 10, 0) 50%);
+            z-index: 1;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .product-aura {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-specs {
+            margin-bottom: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .spec-label {
+            color: var(--text-secondary);
+        }
+
+        .spec-value {
+            color: var(--neon-cyan);
+        }
+
+        .product-cta {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .product-cta:hover {
+            background-color: var(--neon-cyan);
+            color: var(--obsidian);
+        }
+
+        /* Product Detail Page */
+        .product-detail {
+            display: none;
+            padding: 50px 0;
+            background-color: var(--obsidian-light);
+        }
+
+        .product-detail.active {
+            display: block;
+        }
+
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .product-detail-image {
+            height: 600px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-detail-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(138, 43, 226, 0.1));
+            z-index: 1;
+        }
+
+        .product-detail-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-detail-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .product-detail-description {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .product-detail-specs {
+            margin-bottom: 30px;
+        }
+
+        .spec-group {
+            margin-bottom: 20px;
+        }
+
+        .spec-group-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--neon-cyan);
+        }
+
+        .spec-list {
+            list-style: none;
+        }
+
+        .spec-list li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .spec-list li::before {
+            content: '▸';
+            color: var(--ultraviolet);
+            margin-right: 10px;
+        }
+
+        .product-detail-cta {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--gradient-neon);
+            color: var(--obsidian);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .product-detail-cta:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--obsidian);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-image {
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(138, 43, 226, 0.2));
+            z-index: 1;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background-color: var(--obsidian-light);
+            padding: 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+        }
+
+        .value-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .value-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--obsidian-light);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background-color: var(--obsidian);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: var(--obsidian-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-neon);
+            border-radius: 50%;
+            margin-right: 20px;
+            font-size: 1.2rem;
+            color: var(--obsidian);
+        }
+
+        .contact-details h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .contact-details p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .contact-details a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--obsidian);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: var(--gradient-neon);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--obsidian-medium);
+            padding-top: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes holographicShift {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            25% {
+                transform: translateX(-5px) translateY(5px);
+            }
+            50% {
+                transform: translateX(5px) translateY(-5px);
+            }
+            75% {
+                transform: translateX(-5px) translateY(-5px);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .product-detail-container,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--obsidian);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--obsidian-medium);
+            border-top: 2px solid var(--neon-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--obsidian-light);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--neon-cyan);
+            color: var(--obsidian);
+        }
+
+        /* Order buttons */
+        .order-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .order-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 25px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .call-button {
+            background-color: var(--neon-cyan);
+            color: var(--obsidian);
+        }
+
+        .call-button:hover {
+            background-color: var(--neon-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Back to collection button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--neon-cyan);
+            color: var(--obsidian);
+            transform: translateX(-5px);
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--obsidian);
+                flex-direction: column;
+                padding: 20px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+
+            .product-detail-image {
+                height: 300px;
+            }
+
+            .order-buttons {
+                flex-direction: column;
+            }
+
+            .order-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">LMCYCLE</div>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#catalogue">Collection</a></li>
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-neon-overlay"></div>
+        <div class="hero-grid"></div>
+        <div class="holographic-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">LMCYCLE</h1>
+            <p class="hero-subtitle">Élever la Mobilité Au-delà du Futur</p>
+            <a href="#catalogue" class="hero-cta">Explorer la Collection</a>
+        </div>
+    </section>
+
+    <!-- Catalogue Section -->
+    <section id="catalogue" class="catalogue">
+        <div class="container">
+            <h2 class="section-title">Collection Vélos Enfants</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Section -->
+    <section id="productDetail" class="product-detail">
+        <div class="container">
+            <div class="product-detail-container" id="productDetailContainer">
+                <!-- Product details will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">À Propos de LMCYCLE</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Depuis plus de 10 ans, LMCYCLE accompagne les familles dans le choix du vélo parfait pour leurs enfants. Nous proposons des bicyclettes sécurisées, confortables et au design innovant, conçues pour transformer chaque sortie en un moment de plaisir et d’aventure.
+                       Notre expertise et notre passion pour la mobilité enfantine nous permettent de garantir des produits fiables et un service client attentif et personnalisé. Avec LMCYCLE, chaque enfant découvre la liberté sur deux roues en toute sécurité.</p>
+                </div>
+                <div class="about-image" style="background-image: url('https://z-cdn-media.chatglm.cn/files/7393a15e-485c-4cf1-99de-43418c82a30d.jpeg?auth_key=1866002135-8316d30dee5c4d74847d86385e94b926-0-5397168f302de2a06f6905f7234b5a64')"></div>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-child"></i></div>
+                    <h3 class="value-title">Sécurité Avancée</h3>
+                    <p class="value-description">Chaque composant est méticuleusement conçu pour garantir une sécurité absolue pour nos jeunes aventuriers.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-rocket"></i></div>
+                    <h3 class="value-title">Innovation d'abord</h3>
+                    <p class="value-description">Nous pioneeredes technologies adaptées aux enfants, des cadres quantiques aux systèmes intelligents d'équilibre.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                    <h3 class="value-title">Avenir Durable</h3>
+                    <p class="value-description">Notre engagement envers la planète nous pousse à créer des solutions de mobilité éco-responsables.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-star"></i></div>
+                    <h3 class="value-title">Design Enfant-Centré</h3>
+                    <p class="value-description">Chaque création LMCYCLE est conçue avec l'expérience enfant au cœur, garantissant une interaction intuitive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-Nous</h2>
+            <div class="contact-container">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h3>Informations de Contact</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Téléphone</h4>
+                            <p><a href="tel:+21622386099">+216 22 38 60 99</a></p>
+                            <p>Lun-Ven: 9h-18h</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:mahjoublotfi925@gmail.com">mahjoublotfi925@gmail.com</a></p>
+                            <p>support@lmcycle.fr</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Adresse</h4>
+                            <p>Terfer M'saken sousse</p>
+                            <p>4070 Sousse, Tunisie</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Horaires d'Ouverture</h4>
+                            <p>Lundi - Vendredi: 9h00 - 18h00</p>
+                            <p>Samedi: 9h00 - 16h00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">LMCYCLE</div>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LMCYCLE. Tous droits réservés. | Élever la Mobilité Au-delà du Futur</p>
+                <p>Terfer M'saken sousse, 4070 Sousse, Tunisie | +216 22 38 60 99 | <a href="mailto:mahjoublotfi925@gmail.com" style="color: var(--neon-cyan);">mahjoublotfi925@gmail.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Product Data for Kids Bikes
+        const products = [
+            {
+                id: 15,
+                name: "MOTO BIKE V1",
+                aura: "L'énergie pure",
+                specs: {
+                    taille: "16 pouces",
+                    cadre: "Acier",
+                    freins: "à disque",
+                },
+                image: "./images/15.jpeg"
+            },
+            {
+                id: 16,
+                name: "MOTO BIKE V2",
+                aura: "L'explosion finale de l'enfance",
+                specs: {
+                    taille: "12/16 pouces",
+                    cadre: "Acier",
+                    freins: "à disque",
+                },
+                image: "./images/16.jpeg"
+            },
+            {
+                id: 17,
+                name: "MOTO BIKE V3",
+                aura: "La douceur lunaire",
+                specs: {
+                    taille: "12/16 pouces",
+                    cadre: "Acier",
+                    freins: "à disque",
+                },
+                image: "./images/17.jpeg"
+            },
+            {
+                id: 18,
+                name: "MOTO BIKE V4",
+                aura: "L'énergie solaire en mouvement",
+                specs: {
+                    taille: "12/16 pouces",
+                    cadre: "Acier robuste.",
+                    freins: "Étriers ou tambour.",
+                },
+                image: "./images/18.jpeg"
+            },
+            {
+                id: 4,
+                name: "JEXICA",
+                aura: "Sportive",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier blanc",
+                    freins: "À mâchoires",
+                },
+                image: "./images/4.jpeg"
+            },
+            {
+                id: 5,
+                name: "JEXICA",
+                aura: "Sportive",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier blanc",
+                    freins: "À mâchoires",
+                },
+                image: "./images/5.jpeg"
+            },
+            {
+                id: 6,
+                name: "JEXICA",
+                aura: "Sportive",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier blanc",
+                    freins: "À mâchoires",
+                },
+                image: "./images/6.jpeg"
+            },
+            {
+                id: 8,
+                name: "JEXICA",
+                aura: "Sportive",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier blanc",
+                    freins: "À mâchoires",
+                },
+                image: "./images/8.jpeg"
+            },
+            {
+                id: 7,
+                name: "POWER BIKE",
+                aura: "Puissante",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier noir",
+                    freins: "À mâchoires",
+                },
+                image: "./images/7.jpeg"
+            },
+            {
+                id: 9,
+                name: "POWER BIKE",
+                aura: "Puissante",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier noir",
+                    freins: "À mâchoires",
+                },
+                image: "./images/9.jpeg"
+            },
+            {
+                id: 10,
+                name: "POWER BIKE",
+                aura: "Puissante",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier noir",
+                    freins: "À mâchoires",
+                },
+                image: "./images/10.jpeg"
+            },
+            {
+                id: 11,
+                name: "POWER BIKE",
+                aura: "Puissante",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier noir",
+                    freins: "À mâchoires",
+                },
+                image: "./images/11.jpeg"
+            },
+            {
+                id: 12,
+                name: "POWER BIKE",
+                aura: "Puissante",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier noir",
+                    freins: "À mâchoires",
+                },
+                image: "./images/12.jpeg"
+            },
+            {
+                id: 1,
+                name: "TY BIKE",
+                aura: "Sportive",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier robuste",
+                    freins: "A mâchoires",              
+                },
+                image: "./images/1.jpeg"
+            },
+            {
+                id: 2,
+                name: "TY BIKE",
+                aura: "Sportive",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier robuste",
+                    freins: "A mâchoires",
+                },
+                image: "./images/2.jpeg"
+            },
+            {
+                id: 3,
+                name: "TY BIKE",
+                aura: "Sportive",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier robuste",
+                    freins: "A mâchoires",
+                },
+                image: "./images/3.jpeg"
+            },
+            {
+                id: 14,
+                name: "FROZEN",
+                aura: "Le rythme de l'aventure",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Acier robuste.",
+                    freins: "Étriers ou Tambour.",
+                },
+                image: "./images/14.jpeg"
+            },
+            {
+                id: 13,
+                name: "Frozen V2",
+                aura: "Élégance féerique.",
+                specs: {
+                    taille: "12/16/20 pouces",
+                    cadre: "Polymère renforcé",
+                    freins: "Tambour arrière.",
+                },
+                image: "./images/13.jpeg"
+            },
+        ];
+
+        // DOM Elements
+        const loader = document.getElementById('loader');
+        const navbar = document.getElementById('navbar');
+        const productGrid = document.getElementById('productGrid');
+        const productDetail = document.getElementById('productDetail');
+        const productDetailContainer = document.getElementById('productDetailContainer');
+        const backToTop = document.getElementById('backToTop');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const heroBg = document.getElementById('heroBg');
+
+        // Current selected product
+        let currentProduct = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hide loader after page loads
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1500);
+
+            // Generate product cards
+            generateProductCards();
+
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        // Close mobile menu if open
+                        navLinks.classList.remove('active');
+                        
+                        window.scrollTo({
+                            top: target.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Optimize hero image loading
+            optimizeHeroImage();
+        });
+
+        // Optimize hero image loading
+        function optimizeHeroImage() {
+            // Create a low-quality image placeholder (LQIP)
+            const lqipCanvas = document.createElement('canvas');
+            const lqipCtx = lqipCanvas.getContext('2d');
+            lqipCanvas.width = 40;
+            lqipCanvas.height = 30;
+            
+            // Create a simple gradient placeholder
+            const gradient = lqipCtx.createLinearGradient(0, 0, 40, 30);
+            gradient.addColorStop(0, '#0a0a0a');
+            gradient.addColorStop(1, '#1a1a1a');
+            lqipCtx.fillStyle = gradient;
+            lqipCtx.fillRect(0, 0, 40, 30);
+            
+            // Set the LQIP as initial background
+            const lqipUrl = lqipCanvas.toDataURL();
+            heroBg.style.backgroundImage = `linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.85)), url('${lqipUrl}')`;
+            
+            // Preload the actual image
+            const img = new Image();
+            img.src = 'https://z-cdn-media.chatglm.cn/files/fd41b3df-2313-4835-9eea-b7c1f16eb291.png?auth_key=1866002608-a3126c3c0e0b49bd8a817205f3f4f5de-0-438105998f597d70844db479c69c183b';
+            
+            img.onload = function() {
+                // Once loaded, replace the LQIP with the actual image
+                setTimeout(() => {
+                    heroBg.style.backgroundImage = `linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.85)), url('${img.src}')`;
+                    heroBg.style.transition = 'background-image 0.5s ease-in-out';
+                }, 100);
+            };
+            
+            // Handle loading errors
+            img.onerror = function() {
+                console.error('Failed to load hero image');
+                // Keep the gradient background as fallback
+            };
+        }
+
+        // Generate product cards
+        function generateProductCards() {
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+
+                // Generate specs HTML
+                const specsHTML = Object.entries(product.specs).map(([key, value]) => 
+                    `<div class="spec-item">
+                        <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                        <span class="spec-value">${value}</span>
+                    </div>`
+                ).join('');
+
+                card.innerHTML = `
+                    <div class="product-image" style="background-image: url('${product.image}')"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-aura">${product.aura}</p>
+                        <div class="product-specs">
+                            ${specsHTML}
+                        </div>
+                        <a href="#" class="product-cta" data-id="${product.id}">Explorer le Modèle</a>
+                    </div>
+                `;
+
+                productGrid.appendChild(card);
+            });
+
+            // Add event listeners to product CTAs
+            document.querySelectorAll('.product-cta').forEach(cta => {
+                cta.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productId = parseInt(cta.getAttribute('data-id'));
+                    showProductDetail(productId);
+                });
+            });
+        }
+
+        // Show product detail
+        function showProductDetail(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            // Store current product
+            currentProduct = product;
+
+            // Generate specs HTML
+            const specsHTML = Object.entries(product.specs).map(([key, value]) => 
+                `<li>${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}</li>`
+            ).join('');
+
+            // Generate technology breakdown
+            const techBreakdown = `
+                <div class="spec-group">
+                    </ul>
+                </div>
+                <div class="spec-group">
+                    </ul>
+                </div>
+                <div class="spec-group">
+                    </ul>
+                </div>
+            `;
+
+            productDetailContainer.innerHTML = `
+                <div class="product-detail-image" style="background-image: url('${product.image}')"></div>
+                <div class="product-detail-info">
+                    <h2 class="product-detail-title">${product.name}</h2>
+                    
+                    <div class="product-detail-specs">
+                        <div class="spec-group">
+                            <h4 class="spec-group-title">Spécifications</h4>
+                            <ul class="spec-list">
+                                ${specsHTML}
+                            </ul>
+                        </div>
+                        ${techBreakdown}
+                    </div>
+                    
+                    <div class="order-buttons">
+                        <a href="#" class="order-button whatsapp-button" id="whatsappButton">
+                            <i class="fab fa-whatsapp"></i>
+                            Commander via WhatsApp
+                        </a>
+                        <a href="tel:+21622386099" class="order-button call-button">
+                            <i class="fas fa-phone"></i>
+                            Appeler pour commander
+                        </a>
+                    </div>
+                    
+                    <a href="#catalogue" class="back-button" id="backButton">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à la collection
+                    </a>
+                </div>
+            `;
+
+            productDetail.classList.add('active');
+            
+            // Smooth scroll to product detail
+            window.scrollTo({
+                top: productDetail.offsetTop - 70,
+                behavior: 'smooth'
+            });
+
+            // Add event listener to WhatsApp button
+            document.getElementById('whatsappButton').addEventListener('click', function(e) {
+                e.preventDefault();
+                const message = encodeURIComponent(`Bonjour, je souhaite commander le vélo ${product.name}.`);
+                window.open(`https://wa.me/21622386099?text=${message}`, '_blank');
+            });
+
+            // Add event listener to back button
+            document.getElementById('backButton').addEventListener('click', (e) => {
+                e.preventDefault();
+                productDetail.classList.remove('active');
+                window.scrollTo({
+                    top: document.getElementById('catalogue').offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Show/hide back to top button
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top functionality
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
