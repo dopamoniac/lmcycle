@@ -132,6 +132,35 @@
             width: 100%;
         }
 
+        /* Cart Icon */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .cart-icon:hover {
+            color: var(--neon-cyan);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--neon-green);
+            color: var(--obsidian);
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         /* Hero Section - Optimized */
         .hero {
             height: 100vh;
@@ -252,6 +281,243 @@
             transition: all 0.3s ease;
         }
 
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: var(--obsidian-light);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            background-color: var(--obsidian);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-cart:hover {
+            color: var(--neon-cyan);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--obsidian-medium);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-specs {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .quantity-btn {
+            background: none;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            width: 25px;
+            height: 25px;
+            border-radius: 3px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--neon-cyan);
+            color: var(--obsidian);
+        }
+
+        .quantity-value {
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--ultraviolet);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--neon-cyan);
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background-color: var(--obsidian);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .cart-total-price {
+            color: var(--neon-green);
+        }
+
+        .cart-checkout {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--neon-green);
+            color: var(--obsidian);
+            border: none;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cart-checkout:hover {
+            background-color: var(--neon-cyan);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-cart-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--obsidian-medium);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart-btn {
+            background-color: var(--neon-green);
+            color: var(--obsidian);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--obsidian);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-weight: 500;
+            z-index: 1002;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
@@ -286,6 +552,11 @@
             .hero-subtitle {
                 font-size: 1rem;
             }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
         }
     </style>
     
@@ -315,9 +586,46 @@
                 <li><a href="#catalogue">Collection</a></li>
                 <li><a href="#about">À Propos</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 class="cart-title">Votre Panier</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <div class="empty-cart-icon">
+                    <i class="fas fa-shopping-basket"></i>
+                </div>
+                <p>Votre panier est vide</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-price" id="cartTotal">0 TND</span>
+            </div>
+            <button class="cart-checkout" id="cartCheckout">Commander via WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -472,7 +780,7 @@
         const products = [
             {
                 id: 15,
-                name: "MOTO BIKE V1",
+                name: "MOTO BIKE V1 ROUGE",
                 aura: "L'énergie pure",
                 specs: {
                     taille: "Disponible en 16 pouces",
@@ -483,7 +791,7 @@
             },
             {
                 id: 16,
-                name: "MOTO BIKE V2",
+                name: "MOTO BIKE V2 VERT",
                 aura: "L'explosion finale de l'enfance",
                 specs: {
                     taille: "Disponible en 12/16 pouces",
@@ -494,7 +802,7 @@
             },
             {
                 id: 17,
-                name: "MOTO BIKE V3",
+                name: "MOTO BIKE V3 ROUGE",
                 aura: "La douceur lunaire",
                 specs: {
                     taille: "Disponible en 12/16 pouces",
@@ -505,7 +813,7 @@
             },
             {
                 id: 18,
-                name: "MOTO BIKE V4",
+                name: "MOTO BIKE V4 ROUGE",
                 aura: "L'énergie solaire en mouvement",
                 specs: {
                     taille: "Disponible en 12/16 pouces",
@@ -516,7 +824,7 @@
             },
             {
                 id: 4,
-                name: "JEXICA",
+                name: "JEXICA ROUGE",
                 aura: "Sportive",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -527,7 +835,7 @@
             },
             {
                 id: 5,
-                name: "JEXICA",
+                name: "JEXICA ORANGE",
                 aura: "Sportive",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -538,7 +846,7 @@
             },
             {
                 id: 6,
-                name: "JEXICA",
+                name: "JEXICA VERT",
                 aura: "Sportive",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -549,7 +857,7 @@
             },
             {
                 id: 8,
-                name: "JEXICA",
+                name: "JEXICA BLEU",
                 aura: "Sportive",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -560,7 +868,7 @@
             },
             {
                 id: 7,
-                name: "POWER BIKE",
+                name: "POWER BIKE ROSE",
                 aura: "Puissante",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -571,7 +879,7 @@
             },
             {
                 id: 9,
-                name: "POWER BIKE",
+                name: "POWER BIKE ROUGE",
                 aura: "Puissante",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -582,7 +890,7 @@
             },
             {
                 id: 10,
-                name: "POWER BIKE",
+                name: "POWER BIKE BLEU",
                 aura: "Puissante",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -593,7 +901,7 @@
             },
             {
                 id: 11,
-                name: "POWER BIKE",
+                name: "POWER BIKE JAUNE",
                 aura: "Puissante",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -604,7 +912,7 @@
             },
             {
                 id: 12,
-                name: "POWER BIKE",
+                name: "POWER BIKE ORANGE",
                 aura: "Puissante",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -615,7 +923,7 @@
             },
             {
                 id: 1,
-                name: "TY BIKE",
+                name: "TY BIKE ROUGE",
                 aura: "Sportive",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -626,7 +934,7 @@
             },
             {
                 id: 2,
-                name: "TY BIKE",
+                name: "TY BIKE BLEU",
                 aura: "Sportive",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -637,7 +945,7 @@
             },
             {
                 id: 3,
-                name: "TY BIKE",
+                name: "TY BIKE ROSE",
                 aura: "Sportive",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -648,7 +956,7 @@
             },
             {
                 id: 14,
-                name: "FROZEN",
+                name: "FROZEN ROSE",
                 aura: "Le rythme de l'aventure",
                 specs: {
                     taille: "Disponible en 12/16/20 pouces",
@@ -659,10 +967,10 @@
             },
             {
                 id: 13,
-                name: "Frozen V2",
+                name: "Frozen V2 ROSE",
                 aura: "Élégance féerique.",
                 specs: {
-                    taille: "Disponible en 12/16/20 pouces",
+                    taille: "Disponible en 12/16 pouces",
                     cadre: "Polymère renforcé",
                     freins: "Tambour + V brake.",
                 },
@@ -680,9 +988,23 @@
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const navLinks = document.getElementById('navLinks');
         const heroBg = document.getElementById('heroBg');
+        
+        // Cart Elements
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCount = document.getElementById('cartCount');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCheckout = document.getElementById('cartCheckout');
+        const overlay = document.getElementById('overlay');
+        const notification = document.getElementById('notification');
 
         // Current selected product
         let currentProduct = null;
+        
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('lmcycle-cart')) || [];
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
@@ -693,10 +1015,52 @@
 
             // Generate product cards
             generateProductCards();
+            
+            // Update cart UI
+            updateCartUI();
 
             // Mobile menu toggle
             mobileMenuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
+            });
+
+            // Cart toggle
+            cartIcon.addEventListener('click', () => {
+                cartSidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+
+            closeCart.addEventListener('click', () => {
+                cartSidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', () => {
+                cartSidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            // Checkout button
+            cartCheckout.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showNotification('Votre panier est vide');
+                    return;
+                }
+                
+                let message = "Bonjour, je souhaite commander les produits suivants:\n\n";
+                let totalPrice = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    totalPrice += itemTotal;
+                    message += `${item.name} - Quantité: ${item.quantity} - ${item.price} TND x ${item.quantity} = ${itemTotal} TND\n`;
+                });
+                
+                message += `\nTotal: ${totalPrice} TND\n\n`;
+                message += "Merci de confirmer ma commande.";
+                
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/21698297835?text=${encodedMessage}`, '_blank');
             });
 
             // Smooth scrolling for navigation links
@@ -722,6 +1086,108 @@
             // Load non-critical CSS after page load
             loadNonCriticalCSS();
         });
+
+        // Cart Functions
+        function addToCart(productId, quantity = 1) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const existingItemIndex = cart.findIndex(item => item.id === productId);
+            
+            if (existingItemIndex !== -1) {
+                cart[existingItemIndex].quantity += quantity;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: quantity
+                });
+            }
+            
+            saveCart();
+            updateCartUI();
+            showNotification(`${product.name} ajouté au panier`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+            showNotification('Produit retiré du panier');
+        }
+
+        function updateQuantity(productId, quantity) {
+            const itemIndex = cart.findIndex(item => item.id === productId);
+            
+            if (itemIndex !== -1) {
+                if (quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    cart[itemIndex].quantity = quantity;
+                    saveCart();
+                    updateCartUI();
+                }
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('lmcycle-cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-basket"></i>
+                        </div>
+                        <p>Votre panier est vide</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-image" style="background-image: url('${item.image}')"></div>
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-name">${item.name}</h4>
+                            <div class="cart-item-specs">
+                                ${item.specs.taille}<br>
+                                ${item.specs.cadre}
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Update cart total
+            const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            cartTotal.textContent = `${totalPrice} TND`;
+        }
+
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
 
         // Load non-critical CSS
         function loadNonCriticalCSS() {
@@ -888,6 +1354,14 @@
                     color: var(--neon-cyan);
                 }
 
+                .product-price {
+                    font-family: 'Orbitron', sans-serif;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    color: var(--neon-green);
+                    margin-bottom: 15px;
+                }
+
                 .product-cta {
                     display: block;
                     width: 100%;
@@ -901,6 +1375,7 @@
                     letter-spacing: 1px;
                     text-transform: uppercase;
                     transition: all 0.3s ease;
+                    margin-bottom: 10px;
                 }
 
                 .product-cta:hover {
@@ -957,6 +1432,14 @@
                     font-weight: 300;
                     margin-bottom: 20px;
                     letter-spacing: 2px;
+                }
+
+                .product-detail-price {
+                    font-family: 'Orbitron', sans-serif;
+                    font-size: 1.8rem;
+                    font-weight: 500;
+                    color: var(--neon-green);
+                    margin-bottom: 20px;
                 }
 
                 .product-detail-description {
@@ -1464,10 +1947,15 @@
                     <div class="product-info">
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-aura">${product.aura}</p>
+                        <div class="product-price">${product.price} TND</div>
                         <div class="product-specs">
                             ${specsHTML}
                         </div>
                         <a href="#" class="product-cta" data-id="${product.id}">Explorer le Modèle</a>
+                        <button class="add-to-cart-btn" data-id="${product.id}">
+                            <i class="fas fa-shopping-cart"></i>
+                            Ajouter au panier
+                        </button>
                     </div>
                 `;
 
@@ -1480,6 +1968,15 @@
                     e.preventDefault();
                     const productId = parseInt(cta.getAttribute('data-id'));
                     showProductDetail(productId);
+                });
+            });
+
+            // Add event listeners to add to cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productId = parseInt(btn.getAttribute('data-id'));
+                    addToCart(productId);
                 });
             });
         }
@@ -1514,6 +2011,7 @@
                 <div class="product-detail-image" style="background-image: url('${product.image}')"></div>
                 <div class="product-detail-info">
                     <h2 class="product-detail-title">${product.name}</h2>
+                    <div class="product-detail-price">${product.price} TND</div>
                     
                     <div class="product-detail-specs">
                         <div class="spec-group">
@@ -1526,14 +2024,18 @@
                     </div>
                     
                     <div class="order-buttons">
-                        <a href="#" class="order-button whatsapp-button" id="whatsappButton">
+                        <button class="order-button whatsapp-button" id="whatsappButton">
                             <i class="fab fa-whatsapp"></i>
                             Commander via WhatsApp
-                        </a>
-                        <a href="tel:+21698297835" class="order-button call-button">
+                        </button>
+                        <button class="order-button call-button" id="callButton">
                             <i class="fas fa-phone"></i>
                             Appeler pour commander
-                        </a>
+                        </button>
+                        <button class="add-to-cart-btn" id="addToCartDetailBtn" data-id="${product.id}">
+                            <i class="fas fa-shopping-cart"></i>
+                            Ajouter au panier
+                        </button>
                     </div>
                     
                     <a href="#catalogue" class="back-button" id="backButton">
@@ -1554,8 +2056,21 @@
             // Add event listener to WhatsApp button
             document.getElementById('whatsappButton').addEventListener('click', function(e) {
                 e.preventDefault();
-                const message = encodeURIComponent(`Bonjour, je souhaite commander le vélo ${product.name}.`);
-                window.open(`https://wa.me/98297835?text=${message}`, '_blank');
+                const message = encodeURIComponent(`Bonjour, je souhaite commander le vélo ${product.name} au prix de ${product.price} TND.`);
+                window.open(`https://wa.me/21698297835?text=${message}`, '_blank');
+            });
+
+            // Add event listener to call button
+            document.getElementById('callButton').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'tel:+21698297835';
+            });
+
+            // Add event listener to add to cart button
+            document.getElementById('addToCartDetailBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const productId = parseInt(this.getAttribute('data-id'));
+                addToCart(productId);
             });
 
             // Add event listener to back button
@@ -1603,6 +2118,3 @@
     </script>
 </body>
 </html>
-
-
-
