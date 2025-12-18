@@ -230,38 +230,233 @@
             transform: translateY(-2px);
         }
 
-        /* Loader */
-        .loader {
+        /* Luxury Loader */
+        .luxury-loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--obsidian);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
+            overflow: hidden;
         }
 
-        .loader.hidden {
-            opacity: 0;
+        .luxury-loader.fade-out {
+            animation: fadeOut 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .loader-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .loader-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--ultraviolet), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+                transform: scale(1);
+            }
+            100% {
+                filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.8));
+                transform: scale(1.05);
+            }
+        }
+
+        .loader-diamonds {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .diamond {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--ultraviolet));
+            transform: rotate(45deg);
+            animation: diamondPulse 1.5s ease-in-out infinite;
+        }
+
+        .diamond:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .diamond:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes diamondPulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: rotate(45deg) scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: rotate(45deg) scale(1.2);
+            }
+        }
+
+        .loader-text {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            animation: textFade 2s ease-in-out infinite;
+        }
+
+        @keyframes textFade {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .loader-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
         }
 
-        .loader-circle {
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--obsidian-medium);
-            border-top: 2px solid var(--neon-green);
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-cyan);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: float 10s linear infinite;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating Action Buttons */
+        .floating-action-buttons {
+            position: fixed;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 998;
+        }
+
+        .floating-action-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .floating-action-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .whatsapp-float {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .phone-float {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--ultraviolet));
+        }
+
+        .phone-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.4);
+        }
+
+        .floating-tooltip {
+            position: absolute;
+            left: 70px;
+            background-color: var(--obsidian);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border: 1px solid var(--neon-cyan);
+        }
+
+        .floating-action-btn:hover .floating-tooltip {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Mobile menu toggle */
@@ -376,14 +571,15 @@
             background: none;
             border: 1px solid var(--neon-cyan);
             color: var(--neon-cyan);
-            width: 25px;
-            height: 25px;
-            border-radius: 3px;
+            width: 32px;
+            height: 32px;
+            border-radius: 5px;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
         .quantity-btn:hover {
@@ -392,8 +588,9 @@
         }
 
         .quantity-value {
-            margin: 0 10px;
+            margin: 0 15px;
             font-weight: 500;
+            font-size: 1rem;
         }
 
         .cart-item-remove {
@@ -439,10 +636,70 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-bottom: 10px;
         }
 
         .cart-checkout:hover {
             background-color: var(--neon-cyan);
+        }
+
+        .clear-cart {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            color: var(--ultraviolet);
+            border: 1px solid var(--ultraviolet);
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-cart:hover {
+            background-color: var(--ultraviolet);
+            color: var(--platinum);
+        }
+
+        .order-notes {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .order-notes-label {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .order-notes-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            background-color: var(--obsidian-medium);
+            border: 1px solid var(--obsidian-light);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-family: 'Exo 2', sans-serif;
+            font-size: 0.9rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .order-notes-textarea:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .order-notes-textarea::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
         }
 
         .empty-cart {
@@ -475,25 +732,53 @@
             visibility: visible;
         }
 
-        /* Add to Cart Button */
+        /* Add to Cart Button - Enhanced */
         .add-to-cart-btn {
             background-color: var(--neon-green);
             color: var(--obsidian);
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-weight: 500;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 15px;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .add-to-cart-btn:hover::before {
+            left: 100%;
         }
 
         .add-to-cart-btn:hover {
             background-color: var(--neon-cyan);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(-1px);
         }
 
         /* Notification */
@@ -603,6 +888,22 @@
             .mobile-cart-button {
                 display: flex;
             }
+
+            /* Adjust floating buttons for mobile */
+            .floating-action-buttons {
+                left: 15px;
+                gap: 10px;
+            }
+
+            .floating-action-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .floating-tooltip {
+                display: none;
+            }
         }
     </style>
     
@@ -613,9 +914,30 @@
     </noscript>
 </head>
 <body>
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-circle"></div>
+    <!-- Luxury Loader -->
+    <div class="luxury-loader" id="luxuryLoader">
+        <div class="loader-particles" id="loaderParticles"></div>
+        <div class="loader-content">
+            <div class="loader-logo">LMCYCLE</div>
+            <div class="loader-diamonds">
+                <div class="diamond"></div>
+                <div class="diamond"></div>
+                <div class="diamond"></div>
+            </div>
+            <div class="loader-text">Initialisation</div>
+        </div>
+    </div>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-action-buttons">
+        <a href="https://wa.me/21698297835" class="floating-action-btn whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="floating-tooltip">Contactez-nous sur WhatsApp</span>
+        </a>
+        <a href="tel:+21698297835" class="floating-action-btn phone-float">
+            <i class="fas fa-phone"></i>
+            <span class="floating-tooltip">Appelez-nous</span>
+        </a>
     </div>
 
     <!-- Navigation -->
@@ -665,11 +987,20 @@
             </div>
         </div>
         <div class="cart-footer">
+            <div class="order-notes">
+                <label class="order-notes-label" for="orderNotes">Notes de commande</label>
+                <textarea 
+                    id="orderNotes" 
+                    class="order-notes-textarea" 
+                    placeholder="Précisez vos souhaits (couleur, taille, livraison, etc.)"
+                ></textarea>
+            </div>
             <div class="cart-total">
                 <span>Total:</span>
                 <span class="cart-total-price" id="cartTotal">0 TND</span>
             </div>
             <button class="cart-checkout" id="cartCheckout">Commander via WhatsApp</button>
+            <button class="clear-cart" id="clearCart">Vider le panier</button>
         </div>
     </div>
 
@@ -717,7 +1048,7 @@
                     <p>Depuis plus de 10 ans, LMCYCLE accompagne les familles dans le choix du vélo parfait pour leurs enfants. Nous proposons des bicyclettes sécurisées, confortables et au design innovant, conçues pour transformer chaque sortie en un moment de plaisir et d'aventure.
                        Notre expertise et notre passion pour la mobilité enfantine nous permettent de garantir des produits fiables et un service client attentif et personnalisé. Avec LMCYCLE, chaque enfant découvre la liberté sur deux roues en toute sécurité.</p>
                 </div>
-                <div class="about-image" style="background-image: url('https://z-cdn-media.chatglm.cn/files/21992aa4-604a-4f50-b344-1acfc7685917.jpeg?auth_key=1866096881-f5309e562d9144a2a56d9f32ba1e0325-0-bde7a0d4d9a7bfec0754d522f91295ca')"></div>
+                <div class="about-image" style="background-image: url('https://z-cdn-media.chatglm.cn/files/e0e7ab66-82e1-482e-8a64-638a33d75f9c.jpeg?auth_key=1866098681-fad0b99d69174e6a8f4724ee116e053c-0-7294591651b3c88daf1bec0371610554')"></div>
             </div>
             <div class="values-grid">
                 <div class="value-card">
@@ -1013,7 +1344,8 @@
         ];
 
         // DOM Elements
-        const loader = document.getElementById('loader');
+        const luxuryLoader = document.getElementById('luxuryLoader');
+        const loaderParticles = document.getElementById('loaderParticles');
         const navbar = document.getElementById('navbar');
         const productGrid = document.getElementById('productGrid');
         const productDetail = document.getElementById('productDetail');
@@ -1033,6 +1365,8 @@
         const cartItems = document.getElementById('cartItems');
         const cartTotal = document.getElementById('cartTotal');
         const cartCheckout = document.getElementById('cartCheckout');
+        const clearCart = document.getElementById('clearCart');
+        const orderNotes = document.getElementById('orderNotes');
         const overlay = document.getElementById('overlay');
         const notification = document.getElementById('notification');
 
@@ -1044,10 +1378,16 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Hide loader after page loads
+            // Create luxury loading particles
+            createLoaderParticles();
+            
+            // Hide luxury loader after page loads
             setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 1500);
+                luxuryLoader.classList.add('fade-out');
+                setTimeout(() => {
+                    luxuryLoader.style.display = 'none';
+                }, 1500);
+            }, 2500);
 
             // Generate product cards
             generateProductCards();
@@ -1082,6 +1422,21 @@
                 overlay.classList.remove('active');
             });
 
+            // Clear cart button
+            clearCart.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showNotification('Votre panier est déjà vide');
+                    return;
+                }
+                
+                if (confirm('Êtes-vous sûr de vouloir vider votre panier ?')) {
+                    cart = [];
+                    saveCart();
+                    updateCartUI();
+                    showNotification('Panier vidé avec succès');
+                }
+            });
+
             // Checkout button
             cartCheckout.addEventListener('click', () => {
                 if (cart.length === 0) {
@@ -1099,6 +1454,13 @@
                 });
                 
                 message += `\nTotal: ${totalPrice} TND\n\n`;
+                
+                // Add order notes if any
+                const notes = orderNotes.value.trim();
+                if (notes) {
+                    message += `Notes de commande:\n${notes}\n\n`;
+                }
+                
                 message += "Merci de confirmer ma commande.";
                 
                 const encodedMessage = encodeURIComponent(message);
@@ -1128,6 +1490,18 @@
             // Load non-critical CSS after page load
             loadNonCriticalCSS();
         });
+
+        // Create luxury loader particles
+        function createLoaderParticles() {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                loaderParticles.appendChild(particle);
+            }
+        }
 
         // Cart Functions
         function addToCart(productId, quantity = 1) {
@@ -1171,6 +1545,13 @@
             }
         }
 
+        function clearAllCart() {
+            cart = [];
+            saveCart();
+            updateCartUI();
+            showNotification('Panier vidé avec succès');
+        }
+
         function saveCart() {
             localStorage.setItem('lmcycle-cart', JSON.stringify(cart));
         }
@@ -1199,7 +1580,7 @@
                             <h4 class="cart-item-name">${item.name}</h4>
                             <div class="cart-item-specs">
                                 ${item.specs.taille}<br>
-                                ${item.specs.cadre}
+                                ${item.specs.cadre || ''}
                             </div>
                             <div class="cart-item-quantity">
                                 <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">
@@ -1418,7 +1799,7 @@
                     letter-spacing: 1px;
                     text-transform: uppercase;
                     transition: all 0.3s ease;
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
                 }
 
                 .product-cta:hover {
@@ -1954,11 +2335,11 @@
             lqipCtx.fillStyle = gradient;
             lqipCtx.fillRect(0, 0, 40, 30);
             
-            // Set the LQIP as initial background
+            // Set LQIP as initial background
             const lqipUrl = lqipCanvas.toDataURL();
             heroBg.style.backgroundImage = `linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.85)), url('${lqipUrl}')`;
             
-            // Preload the actual image - Using the updated background image
+            // Preload actual image
             const img = new Image();
             img.src = 'https://z-cdn-media.chatglm.cn/files/a2dfff94-7496-4aaa-9b11-dce7a3a1e84c.png?auth_key=1866096620-cfd6caafa6824a0eb0913eaf8aa7ede8-0-87db4a171a1ba32809764c1e8d2ffb98';
             img.onload = function() {
