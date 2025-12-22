@@ -11,7 +11,7 @@
     
     <!-- Load fonts asynchronously -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@100;200;300;400;500;600;700;800;900&family=Exo+2:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.css" media="print" onload="this.media='all'">
     
     <!-- Critical CSS inline -->
     <style>
@@ -844,6 +844,385 @@
             align-items: center;
         }
 
+        /* Size Guide Section */
+        .size-guide {
+            background-color: var(--obsidian-light);
+            padding: 100px 0;
+        }
+
+        .size-guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .size-guide-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .size-guide-intro h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .size-guide-intro h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: var(--gradient-neon);
+        }
+
+        .size-guide-intro p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .size-guide-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .size-table-container {
+            background-color: var(--obsidian);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .size-table-container h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: var(--neon-cyan);
+            text-align: center;
+        }
+
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .size-table th {
+            background-color: var(--obsidian-light);
+            color: var(--neon-cyan);
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .size-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--obsidian-medium);
+            color: var(--text-primary);
+        }
+
+        .size-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .size-table tr:hover {
+            background-color: rgba(0, 255, 255, 0.05);
+        }
+
+        .size-recommendation {
+            background-color: var(--neon-green);
+            color: var(--obsidian);
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+
+        .size-calculator {
+            background-color: var(--obsidian);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .size-calculator h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: var(--neon-cyan);
+            text-align: center;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 15px;
+            background-color: var(--obsidian-light);
+            border: 1px solid var(--obsidian-medium);
+            border-radius: 5px;
+            color: var(--text-primary);
+            font-family: 'Exo 2', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .form-group select option {
+            background-color: var(--obsidian-light);
+            color: var(--text-primary);
+        }
+
+        .calculate-btn {
+            padding: 15px;
+            background: var(--gradient-neon);
+            color: var(--obsidian);
+            border: none;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .calculator-result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--obsidian-light);
+            border-radius: 8px;
+            border: 1px solid var(--neon-cyan);
+            display: none;
+        }
+
+        .calculator-result.show {
+            display: block;
+        }
+
+        .result-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--neon-cyan);
+        }
+
+        .result-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .result-size {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .result-details {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .size-tips {
+            background-color: var(--obsidian);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .size-tips h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: var(--neon-cyan);
+            text-align: center;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .tip-card {
+            background-color: var(--obsidian-light);
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tip-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .tip-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Product Family Styles */
+        .product-family {
+            margin-bottom: 60px;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: var(--obsidian);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .family-header {
+            padding: 25px 30px;
+            background-color: var(--obsidian-light);
+            border-bottom: 1px solid var(--obsidian-medium);
+        }
+
+        .family-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--neon-cyan);
+            margin-bottom: 10px;
+        }
+
+        .family-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .family-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .family-main-product {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+            border-bottom: 1px solid var(--obsidian-medium);
+        }
+
+        .family-variants {
+            padding: 20px 30px;
+        }
+
+        .variants-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .variants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .variant-card {
+            background-color: var(--obsidian-light);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .variant-card.active {
+            border-color: var(--neon-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .variant-image {
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .variant-name {
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .variant-color {
+            display: block;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
@@ -904,6 +1283,40 @@
             .floating-tooltip {
                 display: none;
             }
+
+            /* Size Guide Mobile Styles */
+            .size-guide-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .size-table {
+                font-size: 0.8rem;
+            }
+
+            .size-table th,
+            .size-table td {
+                padding: 10px;
+            }
+
+            .result-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            /* Product Family Mobile Styles */
+            .family-main-product {
+                grid-template-columns: 1fr;
+            }
+
+            .variants-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
         }
     </style>
     
@@ -952,6 +1365,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Accueil</a></li>
                 <li><a href="#catalogue">Collection</a></li>
+                <li><a href="#sizeGuide">Guide des Tailles</a></li>
                 <li><a href="#about">À Propos</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li>
@@ -1024,8 +1438,130 @@
     <section id="catalogue" class="catalogue">
         <div class="container">
             <h2 class="section-title">Collection Vélos Enfants</h2>
-            <div class="product-grid" id="productGrid">
-                <!-- Products will be dynamically generated here -->
+            <div id="productFamilies">
+                <!-- Product families will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Guide Section -->
+    <section id="sizeGuide" class="size-guide">
+        <div class="size-guide-container">
+            <div class="size-guide-intro">
+                <h2>Guide des Tailles</h2>
+                <p>Choisir la bonne taille de vélo pour votre enfant est essentiel pour garantir confort, sécurité et plaisir. Utilisez notre guide ci-dessous pour trouver la taille parfaite en fonction de l'âge et de la taille de votre enfant.</p>
+            </div>
+
+            <div class="size-guide-content">
+                <div class="size-table-container">
+                    <h3>Tableau des Tailles</h3>
+                    <table class="size-table">
+                        <thead>
+                            <tr>
+                                <th>Âge</th>
+                                <th>Taille (cm)</th>
+                                <th>Taille du Vélo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2-4 ans</td>
+                                <td>85-100 cm</td>
+                                <td><span class="size-recommendation">12 pouces</span></td>
+                            </tr>
+                            <tr>
+                                <td>3-5 ans</td>
+                                <td>95-110 cm</td>
+                                <td><span class="size-recommendation">14 pouces</span></td>
+                            </tr>
+                            <tr>
+                                <td>4-6 ans</td>
+                                <td>105-120 cm</td>
+                                <td><span class="size-recommendation">16 pouces</span></td>
+                            </tr>
+                            <tr>
+                                <td>5-8 ans</td>
+                                <td>115-135 cm</td>
+                                <td><span class="size-recommendation">20 pouces</span></td>
+                            </tr>
+                            <tr>
+                                <td>7-10 ans</td>
+                                <td>130-150 cm</td>
+                                <td><span class="size-recommendation">24 pouces</span></td>
+                            </tr>
+                            <tr>
+                                <td>9+ ans</td>
+                                <td>145+ cm</td>
+                                <td><span class="size-recommendation">26 pouces</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="size-calculator">
+                    <h3>Calculateur de Taille</h3>
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="childAge">Âge de l'enfant</label>
+                            <select id="childAge">
+                                <option value="">Sélectionner l'âge</option>
+                                <option value="2">2 ans</option>
+                                <option value="3">3 ans</option>
+                                <option value="4">4 ans</option>
+                                <option value="5">5 ans</option>
+                                <option value="6">6 ans</option>
+                                <option value="7">7 ans</option>
+                                <option value="8">8 ans</option>
+                                <option value="9">9 ans</option>
+                                <option value="10">10 ans</option>
+                                <option value="11">11 ans</option>
+                                <option value="12">12 ans</option>
+                                <option value="13+">13 ans et plus</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="childHeight">Taille de l'enfant (cm)</label>
+                            <input type="number" id="childHeight" placeholder="Ex: 110" min="70" max="180">
+                        </div>
+                        <button class="calculate-btn" id="calculateSize">Calculer la Taille Recommandée</button>
+                    </div>
+                    <div class="calculator-result" id="calculatorResult">
+                        <div class="result-title">Taille Recommandée</div>
+                        <div class="result-content">
+                            <div class="result-size" id="resultSize">16 pouces</div>
+                            <div class="result-details" id="resultDetails">
+                                Idéal pour un enfant de 4-6 ans (105-120 cm)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="size-tips">
+                <h3>Conseils pour Choisir la Bonne Taille</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-ruler-vertical"></i>
+                        </div>
+                        <h4 class="tip-title">Mesurer Correctement</h4>
+                        <p class="tip-description">Faites mesurer votre enfant sans chaussures, debout contre un mur, pour une précision optimale.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-bicycle"></i>
+                        </div>
+                        <h4 class="tip-title">Test d'Enjambée</h4>
+                        <p class="tip-description">L'enfant doit pouvoir poser les deux pieds à plat sur le sol en étant assis sur la selle.</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="tip-title">Marge de Croissance</h4>
+                        <p class="tip-description">Prévoyez une légère marge pour la croissance, mais évitez les vélos trop grands qui pourraient être dangereux.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1343,11 +1879,60 @@
             },
         ];
 
+        // Product Families Configuration
+        const productFamilies = [
+            {
+                id: "moto-bike",
+                name: "MOTO BIKE",
+                description: "Une collection dynamique de motos pour enfants, conçues pour l'aventure et le plaisir de conduire.",
+                defaultProductId: 18,
+                productIds: [18, 16, 17, 15]
+            },
+            {
+                id: "jexica",
+                name: "JEXICA",
+                description: "Des vélos sportifs aux couleurs vives, parfaits pour les jeunes explorateurs actifs.",
+                defaultProductId: 4,
+                productIds: [4, 5, 6, 8]
+            },
+            {
+                id: "power-bike",
+                name: "POWER BIKE",
+                description: "Une gamme puissante de vélos pour enfants qui allient style et performance.",
+                defaultProductId: 7,
+                productIds: [7, 9, 10, 11, 12]
+            },
+            {
+                id: "ty-bike",
+                name: "TY BIKE",
+                description: "Des vélos légers et maniables, idéaux pour les premières expériences de cyclisme.",
+                defaultProductId: 1,
+                productIds: [1, 2, 3]
+            },
+            {
+                id: "frozen",
+                name: "FROZEN",
+                description: "Inspirés par l'univers enchanté de Frozen, ces vélos captivent l'imagination des enfants.",
+                defaultProductId: 14,
+                productIds: [14, 13]
+            }
+        ];
+
+        // Size data for the calculator
+        const sizeData = [
+            { ageRange: "2-4 ans", heightRange: "85-100 cm", bikeSize: "12 pouces", minHeight: 85, maxHeight: 100 },
+            { ageRange: "3-5 ans", heightRange: "95-110 cm", bikeSize: "14 pouces", minHeight: 95, maxHeight: 110 },
+            { ageRange: "4-6 ans", heightRange: "105-120 cm", bikeSize: "16 pouces", minHeight: 105, maxHeight: 120 },
+            { ageRange: "5-8 ans", heightRange: "115-135 cm", bikeSize: "20 pouces", minHeight: 115, maxHeight: 135 },
+            { ageRange: "7-10 ans", heightRange: "130-150 cm", bikeSize: "24 pouces", minHeight: 130, maxHeight: 150 },
+            { ageRange: "9+ ans", heightRange: "145+ cm", bikeSize: "26 pouces", minHeight: 145, maxHeight: 200 }
+        ];
+
         // DOM Elements
         const luxuryLoader = document.getElementById('luxuryLoader');
         const loaderParticles = document.getElementById('loaderParticles');
         const navbar = document.getElementById('navbar');
-        const productGrid = document.getElementById('productGrid');
+        const productFamiliesContainer = document.getElementById('productFamilies');
         const productDetail = document.getElementById('productDetail');
         const productDetailContainer = document.getElementById('productDetailContainer');
         const backToTop = document.getElementById('backToTop');
@@ -1370,8 +1955,17 @@
         const overlay = document.getElementById('overlay');
         const notification = document.getElementById('notification');
 
+        // Size Calculator Elements
+        const childAge = document.getElementById('childAge');
+        const childHeight = document.getElementById('childHeight');
+        const calculateSizeBtn = document.getElementById('calculateSize');
+        const calculatorResult = document.getElementById('calculatorResult');
+        const resultSize = document.getElementById('resultSize');
+        const resultDetails = document.getElementById('resultDetails');
+
         // Current selected product
         let currentProduct = null;
+        let currentFamily = null;
         
         // Cart functionality
         let cart = JSON.parse(localStorage.getItem('lmcycle-cart')) || [];
@@ -1389,11 +1983,14 @@
                 }, 1500);
             }, 2500);
 
-            // Generate product cards
-            generateProductCards();
+            // Generate product families
+            generateProductFamilies();
             
             // Update cart UI
             updateCartUI();
+
+            // Initialize size calculator
+            initializeSizeCalculator();
 
             // Mobile menu toggle
             mobileMenuToggle.addEventListener('click', () => {
@@ -1490,6 +2087,85 @@
             // Load non-critical CSS after page load
             loadNonCriticalCSS();
         });
+
+        // Initialize size calculator
+        function initializeSizeCalculator() {
+            calculateSizeBtn.addEventListener('click', calculateBikeSize);
+            
+            // Also calculate when inputs change
+            childAge.addEventListener('change', calculateBikeSize);
+            childHeight.addEventListener('input', calculateBikeSize);
+        }
+
+        // Calculate bike size based on age and height
+        function calculateBikeSize() {
+            const age = childAge.value;
+            const height = parseInt(childHeight.value);
+            
+            if (!age && !height) {
+                calculatorResult.classList.remove('show');
+                return;
+            }
+            
+            let recommendedSize = null;
+            let details = "";
+            
+            // First try to use height if provided (more accurate)
+            if (height) {
+                for (const size of sizeData) {
+                    if (height >= size.minHeight && height <= size.maxHeight) {
+                        recommendedSize = size.bikeSize;
+                        details = `Idéal pour un enfant de ${size.ageRange} (${size.heightRange})`;
+                        break;
+                    }
+                }
+                
+                // If exact match not found, find closest
+                if (!recommendedSize) {
+                    for (const size of sizeData) {
+                        if (height < size.minHeight) {
+                            recommendedSize = size.bikeSize;
+                            details = `Recommandé pour un enfant de ${size.ageRange} (${size.heightRange})`;
+                            break;
+                        }
+                    }
+                    
+                    // If still not found, use the largest size
+                    if (!recommendedSize) {
+                        const largestSize = sizeData[sizeData.length - 1];
+                        recommendedSize = largestSize.bikeSize;
+                        details = `Recommandé pour un enfant de ${largestSize.ageRange} (${largestSize.heightRange})`;
+                    }
+                }
+            } 
+            // If no height, use age
+            else if (age) {
+                const ageNum = parseInt(age);
+                if (ageNum === 13) {
+                    // Special case for 13+
+                    const largestSize = sizeData[sizeData.length - 1];
+                    recommendedSize = largestSize.bikeSize;
+                    details = `Idéal pour un enfant de ${largestSize.ageRange} (${largestSize.heightRange})`;
+                } else {
+                    for (const size of sizeData) {
+                        const [minAge, maxAge] = size.ageRange.split('-').map(a => parseInt(a.replace(' ans', '').replace('+', '')));
+                        if (ageNum >= minAge && ageNum <= maxAge) {
+                            recommendedSize = size.bikeSize;
+                            details = `Idéal pour un enfant de ${size.ageRange} (${size.heightRange})`;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (recommendedSize) {
+                resultSize.textContent = recommendedSize;
+                resultDetails.textContent = details;
+                calculatorResult.classList.add('show');
+            } else {
+                calculatorResult.classList.remove('show');
+            }
+        }
 
         // Create luxury loader particles
         function createLoaderParticles() {
@@ -1611,6 +2287,312 @@
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
+        }
+
+        // Generate product families
+        function generateProductFamilies() {
+            productFamiliesContainer.innerHTML = '';
+            
+            productFamilies.forEach(family => {
+                // Get the products for this family
+                const familyProducts = family.productIds.map(id => 
+                    products.find(p => p.id === id)
+                ).filter(Boolean);
+                
+                // Get the default product
+                const defaultProduct = familyProducts.find(p => p.id === family.defaultProductId) || familyProducts[0];
+                
+                // Create family container
+                const familyContainer = document.createElement('div');
+                familyContainer.className = 'product-family';
+                familyContainer.dataset.familyId = family.id;
+                
+                // Create family header
+                const familyHeader = document.createElement('div');
+                familyHeader.className = 'family-header';
+                familyHeader.innerHTML = `
+                    <h3 class="family-title">${family.name}</h3>
+                    <p class="family-description">${family.description}</p>
+                `;
+                
+                // Create family content
+                const familyContent = document.createElement('div');
+                familyContent.className = 'family-content';
+                
+                // Create main product display
+                const mainProduct = document.createElement('div');
+                mainProduct.className = 'family-main-product';
+                mainProduct.innerHTML = `
+                    <div class="product-image" style="background-image: url('${defaultProduct.image}')" data-id="${defaultProduct.id}"></div>
+                    <div class="product-info">
+                        <h3 class="product-name">${defaultProduct.name}</h3>
+                        <p class="product-aura">${defaultProduct.aura}</p>
+                        <div class="product-price">${defaultProduct.price} TND</div>
+                        <div class="product-specs">
+                            ${Object.entries(defaultProduct.specs).map(([key, value]) => 
+                                `<div class="spec-item">
+                                    <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                                    <span class="spec-value">${value}</span>
+                                </div>`
+                            ).join('')}
+                        </div>
+                        <a href="#" class="product-cta" data-family-id="${family.id}" data-product-id="${defaultProduct.id}">Explorer le Modèle</a>
+                        <button class="add-to-cart-btn" data-id="${defaultProduct.id}">
+                            <i class="fas fa-shopping-cart"></i>
+                            Ajouter au panier
+                        </button>
+                    </div>
+                `;
+                
+                // Create variants section
+                const variantsSection = document.createElement('div');
+                variantsSection.className = 'family-variants';
+                variantsSection.innerHTML = `
+                    <h4 class="variants-title">Variations de couleur</h4>
+                    <div class="variants-grid">
+                        ${familyProducts.map(product => `
+                            <div class="variant-card ${product.id === defaultProduct.id ? 'active' : ''}" data-product-id="${product.id}" data-family-id="${family.id}">
+                                <div class="variant-image" style="background-image: url('${product.image}')"></div>
+                                <div class="variant-name">${product.name.split(' ').slice(0, -1).join(' ')}</div>
+                                <div class="variant-color">${product.name.split(' ').pop()}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                // Assemble the family container
+                familyContent.appendChild(mainProduct);
+                familyContent.appendChild(variantsSection);
+                familyContainer.appendChild(familyHeader);
+                familyContainer.appendChild(familyContent);
+                
+                // Add to the DOM
+                productFamiliesContainer.appendChild(familyContainer);
+            });
+            
+            // Add event listeners to product CTAs
+            document.querySelectorAll('.product-cta').forEach(cta => {
+                cta.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productId = parseInt(cta.getAttribute('data-product-id'));
+                    const familyId = cta.getAttribute('data-family-id');
+                    showProductDetail(productId, familyId);
+                });
+            });
+            
+            // Add event listeners to add to cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productId = parseInt(btn.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+            
+            // Add event listeners to variant cards
+            document.querySelectorAll('.variant-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const productId = parseInt(card.getAttribute('data-product-id'));
+                    const familyId = card.getAttribute('data-family-id');
+                    
+                    // Update active state
+                    document.querySelectorAll(`.variant-card[data-family-id="${familyId}"]`).forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    card.classList.add('active');
+                    
+                    // Update main product display
+                    const product = products.find(p => p.id === productId);
+                    const familyContainer = document.querySelector(`.product-family[data-family-id="${familyId}"]`);
+                    const productImage = familyContainer.querySelector('.product-image');
+                    const productName = familyContainer.querySelector('.product-name');
+                    const productAura = familyContainer.querySelector('.product-aura');
+                    const productPrice = familyContainer.querySelector('.product-price');
+                    const productSpecs = familyContainer.querySelector('.product-specs');
+                    const productCta = familyContainer.querySelector('.product-cta');
+                    const addToCartBtn = familyContainer.querySelector('.add-to-cart-btn');
+                    
+                    productImage.style.backgroundImage = `url('${product.image}')`;
+                    productImage.dataset.id = product.id;
+                    productName.textContent = product.name;
+                    productAura.textContent = product.aura;
+                    productPrice.textContent = `${product.price} TND`;
+                    productSpecs.innerHTML = Object.entries(product.specs).map(([key, value]) => 
+                        `<div class="spec-item">
+                            <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
+                            <span class="spec-value">${value}</span>
+                        </div>`
+                    ).join('');
+                    productCta.setAttribute('data-product-id', product.id);
+                    addToCartBtn.setAttribute('data-id', product.id);
+                });
+            });
+            
+            // Add event listeners to product images for mobile
+            document.querySelectorAll('.product-image').forEach(image => {
+                // For both click and touch events
+                image.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productId = parseInt(image.getAttribute('data-id'));
+                    const familyContainer = image.closest('.product-family');
+                    const familyId = familyContainer.getAttribute('data-family-id');
+                    showProductDetail(productId, familyId);
+                });
+                
+                // Add touch event for mobile
+                image.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    const productId = parseInt(image.getAttribute('data-id'));
+                    const familyContainer = image.closest('.product-family');
+                    const familyId = familyContainer.getAttribute('data-family-id');
+                    showProductDetail(productId, familyId);
+                });
+            });
+        }
+
+        // Show product detail
+        function showProductDetail(productId, familyId) {
+            const product = products.find(p => p.id === productId);
+            const family = productFamilies.find(f => f.id === familyId);
+            
+            if (!product) return;
+
+            // Store current product and family
+            currentProduct = product;
+            currentFamily = family;
+
+            // Get all products in this family
+            const familyProducts = family.productIds.map(id => 
+                products.find(p => p.id === id)
+            ).filter(Boolean);
+
+            // Generate specs HTML
+            const specsHTML = Object.entries(product.specs).map(([key, value]) => 
+                `<li>${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}</li>`
+            ).join('');
+
+            // Generate variants HTML
+            const variantsHTML = familyProducts.map(p => `
+                <div class="variant-card ${p.id === product.id ? 'active' : ''}" data-product-id="${p.id}">
+                    <div class="variant-image" style="background-image: url('${p.image}')"></div>
+                    <div class="variant-name">${p.name.split(' ').slice(0, -1).join(' ')}</div>
+                    <div class="variant-color">${p.name.split(' ').pop()}</div>
+                </div>
+            `).join('');
+
+            productDetailContainer.innerHTML = `
+                <div class="product-detail-image" id="detailImage" style="background-image: url('${product.image}')"></div>
+                <div class="product-detail-info">
+                    <h2 class="product-detail-title" id="detailTitle">${product.name}</h2>
+                    <div class="product-detail-price" id="detailPrice">${product.price} TND</div>
+                    
+                    <div class="product-detail-specs">
+                        <div class="spec-group">
+                            <h4 class="spec-group-title">Spécifications</h4>
+                            <ul class="spec-list">
+                                ${specsHTML}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="variant-selector">
+                        <h4 class="spec-group-title">Variations de couleur</h4>
+                        <div class="variants-grid">
+                            ${variantsHTML}
+                        </div>
+                    </div>
+                    
+                    <div class="order-buttons">
+                        <button class="order-button whatsapp-button" id="whatsappButton">
+                            <i class="fab fa-whatsapp"></i>
+                            Commander via WhatsApp
+                        </button>
+                        <button class="order-button call-button" id="callButton">
+                            <i class="fas fa-phone"></i>
+                            Appeler pour commander
+                        </button>
+                        <button class="add-to-cart-btn" id="addToCartDetailBtn" data-id="${product.id}">
+                            <i class="fas fa-shopping-cart"></i>
+                            Ajouter au panier
+                        </button>
+                    </div>
+                    
+                    <a href="#catalogue" class="back-button" id="backButton">
+                        <i class="fas fa-arrow-left"></i>
+                        Retour à la collection
+                    </a>
+                </div>
+            `;
+
+            productDetail.classList.add('active');
+            
+            // Smooth scroll to product detail
+            window.scrollTo({
+                top: productDetail.offsetTop - 70,
+                behavior: 'smooth'
+            });
+
+            // Add event listeners to variant cards
+            document.querySelectorAll('.variant-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const variantId = parseInt(card.getAttribute('data-product-id'));
+                    const variantProduct = products.find(p => p.id === variantId);
+                    
+                    if (!variantProduct) return;
+                    
+                    // Update active state
+                    document.querySelectorAll('.variant-card').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    card.classList.add('active');
+                    
+                    // Update product detail view
+                    document.getElementById('detailImage').style.backgroundImage = `url('${variantProduct.image}')`;
+                    document.getElementById('detailTitle').textContent = variantProduct.name;
+                    document.getElementById('detailPrice').textContent = `${variantProduct.price} TND`;
+                    
+                    // Update specs
+                    document.querySelector('.spec-list').innerHTML = Object.entries(variantProduct.specs).map(([key, value]) => 
+                        `<li>${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}</li>`
+                    ).join('');
+                    
+                    // Update add to cart button
+                    document.getElementById('addToCartDetailBtn').setAttribute('data-id', variantProduct.id);
+                    
+                    // Update current product
+                    currentProduct = variantProduct;
+                });
+            });
+
+            // Add event listener to WhatsApp button
+            document.getElementById('whatsappButton').addEventListener('click', function(e) {
+                e.preventDefault();
+                const message = encodeURIComponent(`Bonjour, je souhaite commander le vélo ${product.name} au prix de ${product.price} TND.`);
+                window.open(`https://wa.me/21698297835?text=${message}`, '_blank');
+            });
+
+            // Add event listener to call button
+            document.getElementById('callButton').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = 'tel:+21698297835';
+            });
+
+            // Add event listener to add to cart button
+            document.getElementById('addToCartDetailBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const productId = parseInt(this.getAttribute('data-id'));
+                addToCart(productId);
+            });
+
+            // Add event listener to back button
+            document.getElementById('backButton').addEventListener('click', (e) => {
+                e.preventDefault();
+                productDetail.classList.remove('active');
+                window.scrollTo({
+                    top: document.getElementById('catalogue').offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
         }
 
         // Load non-critical CSS
@@ -2292,6 +3274,11 @@
                     transform: translateX(-5px);
                 }
 
+                /* Variant selector in product detail */
+                .variant-selector {
+                    margin-bottom: 30px;
+                }
+
                 @media (max-width: 768px) {
                     .product-detail-container {
                         grid-template-columns: 1fr;
@@ -2356,179 +3343,6 @@
                 console.error('Failed to load hero image');
                 // Keep the gradient background as fallback
             };
-        }
-
-        // Generate product cards
-        function generateProductCards() {
-            products.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-
-                // Generate specs HTML
-                const specsHTML = Object.entries(product.specs).map(([key, value]) => 
-                    `<div class="spec-item">
-                        <span class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}:</span>
-                        <span class="spec-value">${value}</span>
-                    </div>`
-                ).join('');
-
-                card.innerHTML = `
-                    <div class="product-image" style="background-image: url('${product.image}')" data-id="${product.id}"></div>
-                    <div class="product-info">
-                        <h3 class="product-name">${product.name}</h3>
-                        <p class="product-aura">${product.aura}</p>
-                        <div class="product-price">${product.price} TND</div>
-                        <div class="product-specs">
-                            ${specsHTML}
-                        </div>
-                        <a href="#" class="product-cta" data-id="${product.id}">Explorer le Modèle</a>
-                        <button class="add-to-cart-btn" data-id="${product.id}">
-                            <i class="fas fa-shopping-cart"></i>
-                            Ajouter au panier
-                        </button>
-                    </div>
-                `;
-
-                productGrid.appendChild(card);
-            });
-
-            // Add event listeners to product CTAs
-            document.querySelectorAll('.product-cta').forEach(cta => {
-                cta.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productId = parseInt(cta.getAttribute('data-id'));
-                    showProductDetail(productId);
-                });
-            });
-
-            // Add event listeners to add to cart buttons
-            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productId = parseInt(btn.getAttribute('data-id'));
-                    addToCart(productId);
-                });
-            });
-
-            // Add event listeners to product images for mobile
-            document.querySelectorAll('.product-image').forEach(image => {
-                // For both click and touch events
-                image.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productId = parseInt(image.getAttribute('data-id'));
-                    showProductDetail(productId);
-                });
-                
-                // Add touch event for mobile
-                image.addEventListener('touchend', (e) => {
-                    e.preventDefault();
-                    const productId = parseInt(image.getAttribute('data-id'));
-                    showProductDetail(productId);
-                });
-            });
-        }
-
-        // Show product detail
-        function showProductDetail(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            // Store current product
-            currentProduct = product;
-
-            // Generate specs HTML
-            const specsHTML = Object.entries(product.specs).map(([key, value]) => 
-                `<li>${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}</li>`
-            ).join('');
-
-            // Generate technology breakdown
-            const techBreakdown = `
-                <div class="spec-group">
-                    </ul>
-                </div>
-                <div class="spec-group">
-                    </ul>
-                </div>
-                <div class="spec-group">
-                    </ul>
-                </div>
-            `;
-
-            productDetailContainer.innerHTML = `
-                <div class="product-detail-image" style="background-image: url('${product.image}')"></div>
-                <div class="product-detail-info">
-                    <h2 class="product-detail-title">${product.name}</h2>
-                    <div class="product-detail-price">${product.price} TND</div>
-                    
-                    <div class="product-detail-specs">
-                        <div class="spec-group">
-                            <h4 class="spec-group-title">Spécifications</h4>
-                            <ul class="spec-list">
-                                ${specsHTML}
-                            </ul>
-                        </div>
-                        ${techBreakdown}
-                    </div>
-                    
-                    <div class="order-buttons">
-                        <button class="order-button whatsapp-button" id="whatsappButton">
-                            <i class="fab fa-whatsapp"></i>
-                            Commander via WhatsApp
-                        </button>
-                        <button class="order-button call-button" id="callButton">
-                            <i class="fas fa-phone"></i>
-                            Appeler pour commander
-                        </button>
-                        <button class="add-to-cart-btn" id="addToCartDetailBtn" data-id="${product.id}">
-                            <i class="fas fa-shopping-cart"></i>
-                            Ajouter au panier
-                        </button>
-                    </div>
-                    
-                    <a href="#catalogue" class="back-button" id="backButton">
-                        <i class="fas fa-arrow-left"></i>
-                        Retour à la collection
-                    </a>
-                </div>
-            `;
-
-            productDetail.classList.add('active');
-            
-            // Smooth scroll to product detail
-            window.scrollTo({
-                top: productDetail.offsetTop - 70,
-                behavior: 'smooth'
-            });
-
-            // Add event listener to WhatsApp button
-            document.getElementById('whatsappButton').addEventListener('click', function(e) {
-                e.preventDefault();
-                const message = encodeURIComponent(`Bonjour, je souhaite commander le vélo ${product.name} au prix de ${product.price} TND.`);
-                window.open(`https://wa.me/21698297835?text=${message}`, '_blank');
-            });
-
-            // Add event listener to call button
-            document.getElementById('callButton').addEventListener('click', function(e) {
-                e.preventDefault();
-                window.location.href = 'tel:+21698297835';
-            });
-
-            // Add event listener to add to cart button
-            document.getElementById('addToCartDetailBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                const productId = parseInt(this.getAttribute('data-id'));
-                addToCart(productId);
-            });
-
-            // Add event listener to back button
-            document.getElementById('backButton').addEventListener('click', (e) => {
-                e.preventDefault();
-                productDetail.classList.remove('active');
-                window.scrollTo({
-                    top: document.getElementById('catalogue').offsetTop - 70,
-                    behavior: 'smooth'
-                });
-            });
         }
 
         // Navbar scroll effect
