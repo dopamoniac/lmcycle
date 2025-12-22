@@ -805,7 +805,7 @@
             opacity: 1;
         }
 
-        /* Mobile Floating Cart Button */
+        /* Mobile Cart Button */
         .mobile-cart-button {
             display: none;
             position: fixed;
@@ -1248,6 +1248,40 @@
             display: block;
         }
 
+        /* Mobile Click Zone - New Style */
+        .mobile-click-zone {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            border-radius: 50%;
+            background-color: rgba(0, 255, 255, 0.1);
+            border: 2px dashed var(--neon-cyan);
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mobile-click-zone.active {
+            opacity: 1;
+        }
+
+        .mobile-click-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            text-align: center;
+            pointer-events: none;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
@@ -1345,6 +1379,11 @@
 
             .product-image {
                 height: 250px;
+            }
+
+            /* Show mobile click zone on mobile */
+            .mobile-click-zone {
+                display: block;
             }
         }
     </style>
@@ -1613,7 +1652,7 @@
                     <p>Depuis plus de 10 ans, LMCYCLE accompagne les familles dans le choix du vélo parfait pour leurs enfants. Nous proposons des bicyclettes sécurisées, confortables et au design innovant, conçues pour transformer chaque sortie en un moment de plaisir et d'aventure.
                        Notre expertise et notre passion pour la mobilité enfantine nous permettent de garantir des produits fiables et un service client attentif et personnalisé. Avec LMCYCLE, chaque enfant découvre la liberté sur deux roues en toute sécurité.</p>
                 </div>
-                <div class="about-image" style="background-image: url('https://z-cdn-media.chatglm.cn/files/e0e7ab66-82e1-482e-8a64-638a33d75f9c.jpeg?auth_key=1866098681-fad0b99d69174e6a8f4724ee116e053c-0-7294591651b3c88daf1bec0371610554')"></div>
+                <div class="about-image" style="background-image: url('https://z-cdn-media.chatglm.cn/files/e0e7ab66-82e1-482e-8a64-638a33d75f9c.jpeg?auth_key=1866098681-fad0b99d69174e6a8f4724ee116e053c-0-7294591651b3c88daf1bec0371610554'); background-size: cover;"></div>
             </div>
             <div class="values-grid">
                 <div class="value-card">
@@ -2352,7 +2391,14 @@
                 const mainProduct = document.createElement('div');
                 mainProduct.className = 'family-main-product';
                 mainProduct.innerHTML = `
-                    <div class="product-image" style="background-image: url('${defaultProduct.image}')" data-id="${defaultProduct.id}"></div>
+                    <div class="product-image" data-id="${defaultProduct.id}" data-family-id="${family.id}">
+                        <div class="mobile-click-zone">
+                            <div class="mobile-click-hint">
+                                <i class="fas fa-hand-pointer"></i>
+                                <p>Cliquez ici</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="product-info">
                         <h3 class="product-name">${defaultProduct.name}</h3>
                         <p class="product-aura">${defaultProduct.aura}</p>
@@ -2372,6 +2418,10 @@
                         </button>
                     </div>
                 `;
+                
+                // Set background image for the product image
+                const productImage = mainProduct.querySelector('.product-image');
+                productImage.style.backgroundImage = `url('${defaultProduct.image}')`;
                 
                 // Create variants section
                 const variantsSection = document.createElement('div');
@@ -2457,25 +2507,61 @@
                 });
             });
             
-            // Add event listeners to product images for mobile
+            // Add event listeners to product images for mobile with center click zone
             document.querySelectorAll('.product-image').forEach(image => {
-                // For both click and touch events
-                image.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const productId = parseInt(image.getAttribute('data-id'));
-                    const familyContainer = image.closest('.product-family');
-                    const familyId = familyContainer.getAttribute('data-family-id');
-                    showProductDetail(productId, familyId);
-                });
+                // Check if device is mobile
+                const isMobile = window.innerWidth <= 768;
                 
-                // Add touch event for mobile
-                image.addEventListener('touchend', (e) => {
-                    e.preventDefault();
-                    const productId = parseInt(image.getAttribute('data-id'));
-                    const familyContainer = image.closest('.product-family');
-                    const familyId = familyContainer.getAttribute('data-family-id');
-                    showProductDetail(productId, familyId);
-                });
+                if (isMobile) {
+                    // Show click zone hint on mobile
+                    const clickZone = image.querySelector('.mobile-click-zone');
+                    
+                    // Show hint on touch start
+                    image.addEventListener('touchstart', () => {
+                        clickZone.classList.add('active');
+                    });
+                    
+                    // Hide hint on touch end
+                    image.addEventListener('touchend', () => {
+                        setTimeout(() => {
+                            clickZone.classList.remove('active');
+                        }, 1000);
+                    });
+                    
+                    // Handle click on the image
+                    image.addEventListener('click', (e) => {
+                        // Get click position relative to the image
+                        const rect = image.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        // Calculate center of the image
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        // Calculate distance from center
+                        const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                        
+                        // Define radius of clickable area (40% of the smaller dimension)
+                        const radius = Math.min(rect.width, rect.height) * 0.4;
+                        
+                        // Check if the click is within the center area
+                        if (distance <= radius) {
+                            e.preventDefault();
+                            const productId = parseInt(image.getAttribute('data-id'));
+                            const familyId = image.getAttribute('data-family-id');
+                            showProductDetail(productId, familyId);
+                        }
+                    });
+                } else {
+                    // For desktop, the entire image is clickable
+                    image.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const productId = parseInt(image.getAttribute('data-id'));
+                        const familyId = image.getAttribute('data-family-id');
+                        showProductDetail(productId, familyId);
+                    });
+                }
             });
         }
 
@@ -2818,7 +2904,7 @@
 
                 .product-detail-image {
                     height: 600px;
-                    background-size: contain;
+                    background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
                     border-radius: 10px;
@@ -2935,7 +3021,7 @@
 
                 .about-image {
                     height: 500px;
-                    background-size: contain;
+                    background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
                     border-radius: 10px;
